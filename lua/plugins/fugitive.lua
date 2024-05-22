@@ -1,0 +1,23 @@
+return {
+  "tpope/vim-fugitive",
+  cmd = { "G", "Git", "Gedit", "Gread", "Gwrite", "Gdiffsplit", "Gvdiffsplit" },
+  keys = {
+    -- stylua: ignore start
+    { "<leader>gt", "<cmd>G<cr>", desc = "[G]it s[t]atus(fugitive)", },
+    { "<leader>gT", "<cmd>tab G<cr>", desc = "Open fugitive in new tab", },
+    { "<leader>gl", "<cmd>Git log<cr>", desc = "Open Git Log", },
+    -- stylua: ignore end
+  },
+  dependencies = {
+    "skywind3000/asyncrun.vim",
+    cmd = "AsyncRun",
+  },
+  config = function()
+    vim.cmd [[
+      command! -bang -bar -nargs=* Gpush execute 'AsyncRun<bang> -cwd=' .
+                \ fnameescape(FugitiveGitDir()) '-post=echo\ "done" git push' <q-args>
+      command! -bang -bar -nargs=* Gfetch execute 'AsyncRun<bang> -cwd=' .
+                \ fnameescape(FugitiveGitDir()) '-post=echo\ "done" git fetch' <q-args>
+    ]]
+  end,
+}
