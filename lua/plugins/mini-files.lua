@@ -1,6 +1,6 @@
 return {
   "Leiyi548/mini.files",
-  enabled = false,
+  enabled = true,
   opts = {
     windows = {
       -- Maximum number of windows to show side by side
@@ -37,12 +37,12 @@ return {
   },
   keys = {
     {
-      "<leader>e",
+      "<C-1>",
       function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end,
       desc = "Open mini.files (directory of current file)",
     },
     {
-      "<leader>fM",
+      "<C-3>",
       function() require("mini.files").open(vim.loop.cwd(), true) end,
       desc = "Open mini.files (cwd)",
     },
