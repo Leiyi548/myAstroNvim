@@ -7,18 +7,19 @@ return {
   keys = {
     {
       "<leader>fe",
-      function()
-        vim.cmd("Neotree")
-      end,
+      function() vim.cmd "Neotree Toggle" end,
       desc = "Explorer NeoTree",
     },
   },
-  deactivate = function()
-    vim.cmd([[Neotree close]])
-  end,
+  deactivate = function() vim.cmd [[Neotree close]] end,
   opts = {
     -- sources = { "filesystem", "buffers", "git_status", "document_symbols" },
-    sources = { "filesystem" },
+    sources = { "filesystem", "buffers", "git_status" },
+    source_selector = {
+      winbar = false,
+      statusline = false,
+    },
+    -- sources = { "filesystem" },
     open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
     filesystem = {
       bind_to_cwd = false,
