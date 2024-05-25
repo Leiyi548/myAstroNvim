@@ -77,3 +77,8 @@ map("n", "<leader>fh", "<cmd>Telescope highlights<cr>", { desc = "Telescope git_
 map("n", "<leader>bf", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
 map("n", "<leader>sq", "<cmd>Telescope quickfix<cr>", { desc = "Telescope quickfix" })
+
+-- fugitive
+map("n", "<leader>gt", "<cmd>G<cr>", { desc = "[G]it s[t]atus(fugitive)" })
+map("n", "<leader>gT", "<cmd>tab G<cr>", { desc = "Open fugitive in new tab" })
+map("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Open Git Log" })
