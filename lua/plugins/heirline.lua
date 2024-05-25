@@ -70,6 +70,33 @@ FileNameBlock = utils.insert(
   { provider = "%<" } -- this means that the statusline is cut here when there's not enough space
 )
 
+local CloseButton = {
+  condition = function(self) return not vim.bo.modified end,
+  -- a small performance improvement:
+  -- re register the component callback only on layout/buffer changes.
+  update = { "WinNew", "WinClosed", "BufEnter" },
+  { provider = " " },
+  {
+    provider = "",
+    hl = { fg = "gray" },
+    on_click = {
+      minwid = function() return vim.api.nvim_get_current_win() end,
+      callback = function(_, minwid) vim.api.nvim_win_close(minwid, true) end,
+      name = "heirline_winbar_close_button",
+    },
+  },
+}
+
+-- Use it anywhere!
+local WinBarFileName = utils.surround({ "", "" }, "bg", {
+  hl = function()
+    if not conditions.is_active() then return { fg = "fg", force = true } end
+  end,
+  FileNameBlock,
+  Space,
+  CloseButton,
+})
+
 local Git = {
   condition = conditions.is_git_repo,
 
@@ -261,22 +288,8 @@ return {
         status.component.builder(ScrollBar),
         -- status.component.nav(),
       },
-      winbar = { -- winbar
-        init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
-        fallthrough = false,
-        {
-          condition = function() return not status.condition.is_active() end,
-          status.component.separated_path(),
-          status.component.file_info {
-            file_icon = { hl = status.hl.file_icon "winbar", padding = { left = 0 } },
-            filename = {},
-            filetype = false,
-            file_read_only = false,
-            hl = status.hl.get_attributes("winbarnc", true),
-            surround = false,
-            update = "BufEnter",
-          },
-        },
+      winbar = {
+        WinBarFileName,
         status.component.breadcrumbs { hl = status.hl.get_attributes("winbar", true) },
       },
       tabline = { -- bufferline
