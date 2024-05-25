@@ -32,6 +32,10 @@ local FileName = {
     return filename
   end,
   hl = { fg = utils.get_highlight("keyword").fg },
+  on_click = {
+    callback = function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end,
+    name = "heirline_filename",
+  },
 }
 
 local FileFlags = {
@@ -193,6 +197,15 @@ local WorkDir = {
     return icon .. cwd .. trail
   end,
   hl = { fg = "white", bold = true },
+  on_click = {
+    callback = function()
+      -- local cwd = vim.fn.getcwd(0)
+      -- cwd = vim.fn.fnamemodify(cwd, ":~")
+      -- vim.notify "hello,world"
+      vim.cmd "AsyncRun explorer.exe ."
+    end,
+    name = "heirline_workdir",
+  },
 }
 
 -- We're getting minimalist here!
@@ -224,13 +237,13 @@ return {
       "AstroNvim/astrocore",
       opts = function(_, opts)
         local maps = opts.mappings
-        maps.n["<Leader>bb"] = {
+        maps.n["gbs"] = {
           function()
             require("astroui.status.heirline").buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
           end,
           desc = "Select buffer from tabline",
         }
-        maps.n["<Leader>bd"] = {
+        maps.n["gbd"] = {
           function()
             require("astroui.status.heirline").buffer_picker(
               function(bufnr) require("astrocore.buffer").close(bufnr) end
@@ -238,7 +251,7 @@ return {
           end,
           desc = "Close buffer from tabline",
         }
-        maps.n["<Leader>b\\"] = {
+        maps.n["gbx"] = {
           function()
             require("astroui.status.heirline").buffer_picker(function(bufnr)
               vim.cmd.split()
@@ -247,7 +260,7 @@ return {
           end,
           desc = "Horizontal split buffer from tabline",
         }
-        maps.n["<Leader>b|"] = {
+        maps.n["gbv"] = {
           function()
             require("astroui.status.heirline").buffer_picker(function(bufnr)
               vim.cmd.vsplit()
@@ -274,7 +287,9 @@ return {
         status.component.mode(),
         status.component.builder(Git),
         status.component.fill(),
+        -- TODO: 点击用 windows11 系统默认的文件管理器打开目录
         status.component.builder(WorkDir),
+        -- TODO: 点击用 windows11 系统默认的文件管理器打开目录
         status.component.builder(FileNameBlock),
         status.component.diagnostics(),
         status.component.fill(),
