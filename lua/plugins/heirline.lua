@@ -198,12 +198,7 @@ local WorkDir = {
   end,
   hl = { fg = "white", bold = true },
   on_click = {
-    callback = function()
-      -- local cwd = vim.fn.getcwd(0)
-      -- cwd = vim.fn.fnamemodify(cwd, ":~")
-      -- vim.notify "hello,world"
-      vim.cmd "AsyncRun explorer.exe ."
-    end,
+    callback = function() vim.cmd "AsyncRun explorer.exe ." end,
     name = "heirline_workdir",
   },
 }
