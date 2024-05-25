@@ -25,12 +25,23 @@ function M.findProjectFile()
   local builtin_picker = "find_files"
   local opts = {
     prompt_title = "",
+    prompt_prefix = " ",
+    selection_caret = " ",
     results_title = "Result(findProjectFile)",
     show_untracked = true,
     path_display = {
       filename_first = {
         reverse_directories = false,
       },
+    },
+    dynamic_preview_title = true,
+    sorting_strategy = "descending", -- 按照升序排序
+    layout_config = {
+      horizontal = { prompt_position = "bottom", preview_width = 0.6, preview_cutoff = 0 },
+      vertical = { prompt_position = "bottom", mirror = false, preview_cutoff = 0 },
+      -- make telescope full width
+      width = { padding = 0 },
+      height = { padding = 0 },
     },
   }
   if
@@ -101,6 +112,24 @@ end
 function M.live_grep_project()
   local opts = {
     prompt_title = vim.uv.cwd(),
+    prompt_prefix = " ",
+    selection_caret = " ",
+    results_title = "Result(findProjectFile)",
+    show_untracked = true,
+    path_display = {
+      filename_first = {
+        reverse_directories = false,
+      },
+    },
+    dynamic_preview_title = true,
+    sorting_strategy = "descending", -- 按照升序排序
+    layout_config = {
+      horizontal = { prompt_position = "bottom", preview_width = 0.6, preview_cutoff = 0 },
+      vertical = { prompt_position = "bottom", mirror = false, preview_cutoff = 0 },
+      -- make telescope full width
+      width = { padding = 0 },
+      height = { padding = 0 },
+    },
   }
   builtin.live_grep(opts)
 end
@@ -109,6 +138,24 @@ function M.grep_string_by_filetype()
   local opts = {
     prompt_title = "Search for a specific file type",
     type_filter = vim.fn.input "FireType: ",
+    prompt_prefix = " ",
+    selection_caret = " ",
+    results_title = "Result(findProjectFile)",
+    show_untracked = true,
+    path_display = {
+      filename_first = {
+        reverse_directories = false,
+      },
+    },
+    dynamic_preview_title = true,
+    sorting_strategy = "descending", -- 按照升序排序
+    layout_config = {
+      horizontal = { prompt_position = "bottom", preview_width = 0.6, preview_cutoff = 0 },
+      vertical = { prompt_position = "bottom", mirror = false, preview_cutoff = 0 },
+      -- make telescope full width
+      width = { padding = 0 },
+      height = { padding = 0 },
+    },
   }
   builtin.live_grep(opts)
 end

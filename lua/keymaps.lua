@@ -14,6 +14,10 @@ vim.keymap.del("n", "<leader>pS")
 vim.keymap.del("n", "<leader>pu")
 vim.keymap.del("n", "<leader>pU")
 
+-- change window origin keymap
+map("n", "<C-w>x", "<C-w>s", { desc = "横向分屏当前 buffer" })
+map("n", "<C-w>s", "<C-w>x", { desc = "跟下一个窗口进行交换" })
+
 -- lazy
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Open Lazy dashboard" })
 
@@ -59,6 +63,12 @@ map(
 map(
   "n",
   "<leader>sg",
+  function() require("utils.fancy_telescope").live_grep_project() end,
+  { desc = "Grep string project" }
+)
+map(
+  "n",
+  "<leader>fw",
   function() require("utils.fancy_telescope").live_grep_project() end,
   { desc = "Grep string project" }
 )
