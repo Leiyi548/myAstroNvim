@@ -82,3 +82,6 @@ map("n", "<leader>sq", "<cmd>Telescope quickfix<cr>", { desc = "Telescope quickf
 map("n", "<leader>gt", "<cmd>G<cr>", { desc = "[G]it s[t]atus(fugitive)" })
 map("n", "<leader>gT", "<cmd>tab G<cr>", { desc = "Open fugitive in new tab" })
 map("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Open Git Log" })
+
+-- emacs key
+map({ "i", "c" }, "<C-d>", "<Del>", { desc = "emacs delete" })
