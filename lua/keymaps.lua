@@ -73,7 +73,8 @@ map(
   { desc = "Grep string project" }
 )
 map("n", "<leader>gf", "<cmd>Telescope git_files<cr>", { desc = "Telescope git_files" })
-map("n", "<leader>fh", "<cmd>Telescope highlights<cr>", { desc = "Telescope git_files" })
+map("n", "<leader>fh", "<cmd>Telescope highlights<cr>", { desc = "Telescope highlights" })
+map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Telescope help_tags" })
 map("n", "<leader>bf", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
 map("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
 map("n", "<leader>sq", "<cmd>Telescope quickfix<cr>", { desc = "Telescope quickfix" })
