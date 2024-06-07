@@ -42,7 +42,7 @@ return {
       desc = "Open mini.files (directory of current file)",
     },
     {
-      "<C-3>",
+      "<C-2>",
       function() require("mini.files").open(vim.loop.cwd(), true) end,
       desc = "Open mini.files (cwd)",
     },
