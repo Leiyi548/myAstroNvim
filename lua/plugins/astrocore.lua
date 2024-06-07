@@ -32,6 +32,7 @@ return {
         wrap = false, -- sets vim.opt.wrap
         backup = false,
         swapfile = false,
+        shadafile = "none",
         guifont = "FiraCode Nerd Font,霞鹜文楷 GB 屏幕阅读版,TumanPUA:h20", -- text below applies for VimScript
       },
       g = { -- vim.g.<key>
